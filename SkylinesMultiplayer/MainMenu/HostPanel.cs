@@ -6,8 +6,8 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using ColossalFramework;
 using ColossalFramework.Packaging;
+using ColossalFramework.PlatformServices;
 using ColossalFramework.Plugins;
-using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using UnityEngine;
 
@@ -242,9 +242,9 @@ namespace SkylinesMultiplayer
                 m_LastSaveName = base.GetListingName(this.m_SaveList.selectedIndex);
                 SavePanel.lastLoadedName = m_LastSaveName;
                 SaveGameMetaData listingMetaData = base.GetListingMetaData(this.m_SaveList.selectedIndex);
-                base.PrintModsInfo(listingMetaData);
+                base.PrintModsInfo(listingMetaData.mods);
                 Package.Asset listingData = base.GetListingData(this.m_SaveList.selectedIndex);
-                SavePanel.lastCloudSetting = (listingData.package != null) && PackageManager.IsSteamCloudPath(listingData.package.packagePath);
+                SavePanel.lastCloudSetting = (listingData.package != null) && PackageManager.IsCloudPath(listingData.package.packagePath);
                 SimulationMetaData ngs = new SimulationMetaData
                 {
                     m_CityName = listingMetaData.cityName,

@@ -80,7 +80,7 @@ namespace SkylinesMultiplayer
                                 if (!m_fakeCars[player.ID].Contains(carID))
                                 {
 
-                                    if ((vehicle.m_flags & Vehicle.Flags.Spawned) != Vehicle.Flags.None || vehicle.Info.m_instanceID.ParkedVehicle == 0)
+                                    if ((vehicle.m_flags & Vehicle.Flags.Spawned) != 0 || vehicle.Info.m_instanceID.ParkedVehicle == 0)
                                     {
                                         if (m_fakeCars[player.ID].Count >= CAR_POOL_SIZE)
                                         {
@@ -105,8 +105,8 @@ namespace SkylinesMultiplayer
                         Vector3 carPosition;
                         Quaternion carRotation;
                         vehicle.GetSmoothPosition((ushort)carID, out carPosition, out carRotation);
-
-                        if ((vehicle.m_flags & Vehicle.Flags.Spawned) == Vehicle.Flags.None || vehicle.Info.m_instanceID.ParkedVehicle != 0 || Vector3.SqrMagnitude(player.PlayerGameObject.transform.position - carPosition) > Math.Pow((SEARCH_SIZE + 1) * 32 + 10, 2))
+                        
+                        if ((vehicle.m_flags & Vehicle.Flags.Spawned) == 0 || vehicle.Info.m_instanceID.ParkedVehicle != 0 || Vector3.SqrMagnitude(player.PlayerGameObject.transform.position - carPosition) > Math.Pow((SEARCH_SIZE + 1) * 32 + 10, 2))
                         {
                             carsToRemove.Add(carID);
                         }

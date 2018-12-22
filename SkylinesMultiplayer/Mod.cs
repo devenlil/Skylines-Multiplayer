@@ -13,7 +13,6 @@ using ColossalFramework.IO;
 using ColossalFramework.Math;
 using ColossalFramework.Packaging;
 using ColossalFramework.Plugins;
-using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using ICities;
 using Newtonsoft.Json;

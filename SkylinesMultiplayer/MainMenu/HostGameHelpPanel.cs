@@ -6,7 +6,6 @@ using System.Text;
 using ColossalFramework;
 using ColossalFramework.Packaging;
 using ColossalFramework.Plugins;
-using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using Lidgren.Network;
 using UnityEngine;

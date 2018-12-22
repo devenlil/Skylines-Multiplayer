@@ -5,8 +5,8 @@ using System.Net;
 using System.Text;
 using ColossalFramework;
 using ColossalFramework.Packaging;
+using ColossalFramework.PlatformServices;
 using ColossalFramework.Plugins;
-using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using Lidgren.Network;
 using UnityEngine;
@@ -108,7 +108,7 @@ namespace SkylinesMultiplayer
         {
             if (m_mapID != 0)
             {
-                float subscribedItemProgress = Steam.workshop.GetSubscribedItemProgress(new PublishedFileId(m_mapID));
+                float subscribedItemProgress = PlatformService.workshop.GetSubscribedItemProgress(new PublishedFileId(m_mapID));
 
                 if (subscribedItemProgress > 0)
                 {
@@ -279,7 +279,7 @@ namespace SkylinesMultiplayer
             else
             {
                 //TODO Also show a popup here as backup if the steamoverlay dosen't work
-                Steam.ActivateGameOverlayToWebPage("http://steamcommunity.com/sharedfiles/filedetails/?id=" + mapId + "/");
+                PlatformService.ActivateGameOverlayToWebPage("http://steamcommunity.com/sharedfiles/filedetails/?id=" + mapId + "/");
                 Debug.Log("Please Download mapid " + mapId);
                 m_connectionInfoLabel.text = DOWNLOAD_MAP_STRING;
             }

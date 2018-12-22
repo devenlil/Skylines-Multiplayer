@@ -69,7 +69,7 @@ namespace SkylinesMultiplayer
                 }
             }
 
-            if (Singleton<NetManager>.instance.RayCast(segment, 0f, ItemClass.Service.None, ItemClass.Service.None, ItemClass.SubService.None,
+            if (Singleton<NetManager>.instance.RayCast(null, segment, 0f, false, ItemClass.Service.None, ItemClass.Service.None, ItemClass.SubService.None,
                 ItemClass.SubService.None, ItemClass.Layer.Default, ItemClass.Layer.None, NetNode.Flags.OnGround, NetSegment.Flags.None,
                 out tempHitPos, out a, out b))
             {
@@ -152,7 +152,7 @@ namespace SkylinesMultiplayer
                 }
             }
 
-            if (Singleton<VehicleManager>.instance.RayCast(segment, Vehicle.Flags.None, VehicleParked.Flags.All, out tempHitPos, out a, out b))
+            if (Singleton<VehicleManager>.instance.RayCast(segment, 0, VehicleParked.Flags.All, out tempHitPos, out a, out b))
             {
                 float distance = Vector3.SqrMagnitude(startPos - tempHitPos);
                 if (distance < closestRayHitDistance)
@@ -166,7 +166,8 @@ namespace SkylinesMultiplayer
                 }
             }
 
-            if (Singleton<VehicleManager>.instance.RayCast(segment, Vehicle.Flags.All, VehicleParked.Flags.None, out tempHitPos, out a, out b))
+            var VehicleFlagsAll = Vehicle.Flags.Created | Vehicle.Flags.Deleted | Vehicle.Flags.Spawned | Vehicle.Flags.Inverted | Vehicle.Flags.TransferToTarget | Vehicle.Flags.TransferToSource | Vehicle.Flags.Emergency1 | Vehicle.Flags.Emergency2 | Vehicle.Flags.WaitingPath | Vehicle.Flags.Stopped | Vehicle.Flags.Leaving | Vehicle.Flags.Arriving | Vehicle.Flags.Reversed | Vehicle.Flags.TakingOff | Vehicle.Flags.Flying | Vehicle.Flags.Landing | Vehicle.Flags.WaitingSpace | Vehicle.Flags.WaitingCargo | Vehicle.Flags.GoingBack | Vehicle.Flags.WaitingTarget | Vehicle.Flags.Importing | Vehicle.Flags.Exporting | Vehicle.Flags.Parking | Vehicle.Flags.CustomName | Vehicle.Flags.OnGravel | Vehicle.Flags.WaitingLoading | Vehicle.Flags.Congestion | Vehicle.Flags.DummyTraffic | Vehicle.Flags.Underground | Vehicle.Flags.Transition | Vehicle.Flags.InsideBuilding | Vehicle.Flags.LeftHandDrive;
+            if (Singleton<VehicleManager>.instance.RayCast(segment, VehicleFlagsAll, VehicleParked.Flags.None, out tempHitPos, out a, out b))
             {
                 float distance = Vector3.SqrMagnitude(startPos - tempHitPos);
                 if (distance < closestRayHitDistance)

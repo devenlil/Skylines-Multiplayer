@@ -11,13 +11,13 @@ using ColossalFramework;
 using UnityEngine;
 using System.Reflection;
 using ColossalFramework.Plugins;
-using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using ICities;
 using Lidgren.Network;
 using SkylinesMultiplayer.Prefabs;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
+using ColossalFramework.PlatformServices;
 
 namespace SkylinesMultiplayer 
 {
@@ -332,7 +332,7 @@ namespace SkylinesMultiplayer
                     int newId = SpawnLocalPlayer();
                     MessageSpawnPlayer spawnMessage = new MessageSpawnPlayer();
                     spawnMessage.playerId = newId;
-                    spawnMessage.playerName = Steam.personaName;
+                    spawnMessage.playerName = PlatformService.personaName;
                     SendNetworkMessage(spawnMessage, SendTo.Others);
                     break;
                 case MessageFunction.UpdateVehiclesPositions:
@@ -378,7 +378,7 @@ namespace SkylinesMultiplayer
             
             NetworkPlayer playerInfo = new NetworkPlayer();
             playerInfo.ID = id;
-            playerInfo.Name = Steam.personaName;
+            playerInfo.Name = PlatformService.personaName;
             playerInfo.PlayerGameObject = clone;
             m_players.Add(playerInfo);
 

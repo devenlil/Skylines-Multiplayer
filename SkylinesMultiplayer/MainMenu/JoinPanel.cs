@@ -2,7 +2,6 @@
 using ColossalFramework;
 using ColossalFramework.Globalization;
 using ColossalFramework.Packaging;
-using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using System;
 using System.Collections.Generic;
@@ -14,6 +13,7 @@ using ColossalFramework.Plugins;
 using Lidgren.Network;
 using SimpleJSON;
 using UnityEngine;
+using ColossalFramework.PlatformServices;
 
 namespace SkylinesMultiplayer
 {
@@ -246,7 +246,7 @@ namespace SkylinesMultiplayer
         {
             if (m_mapID != 0)
             {
-                float subscribedItemProgress = Steam.workshop.GetSubscribedItemProgress(new PublishedFileId(m_mapID));
+                float subscribedItemProgress = PlatformService.workshop.GetSubscribedItemProgress(new PublishedFileId(m_mapID));
 
                 if (subscribedItemProgress > 0)
                 {
@@ -387,7 +387,7 @@ namespace SkylinesMultiplayer
             {
                 //TODO Also show a popup here as backup if the steamoverlay dosen't work
                 m_errorLabel.text = DOWNLOAD_MAP_STRING;
-                Steam.ActivateGameOverlayToWebPage("http://steamcommunity.com/sharedfiles/filedetails/?id=" + mapId + "/");
+                PlatformService.ActivateGameOverlayToWebPage("http://steamcommunity.com/sharedfiles/filedetails/?id=" + mapId + "/");
                 Debug.Log("Please Download mapid " + mapId);
             }
 
@@ -498,7 +498,7 @@ namespace SkylinesMultiplayer
             string[] strArray = str.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             if (((strArray.Length == 2) && (strArray[0] == "steamid")) && ulong.TryParse(strArray[1], out num))
             {
-                return new Friend(new SteamID(num)).personaName;
+                return new Friend(new UserID(num)).personaName;
             }
             return "Unknown";
         }
